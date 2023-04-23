@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const Login = () => {
+const Login = ({ setSession }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -25,36 +26,57 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const errors = {};
+    const headers = {
+      "Content-Type": "application/json",
+    };
 
-    if (formData.email.trim() === "") {
-      errors.email = "Email is required";
-    } else {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(formData.email)) {
-        errors.email = "Email is invalid";
+    try {
+      const errors = {};
+
+      if (formData.email.trim() === "") {
+        errors.email = "Email is required";
+      } else {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.email)) {
+          errors.email = "Email is invalid";
+        }
       }
-    }
 
-    if (formData.password === "") {
-      errors.password = "Password is required";
-    }
+      if (formData.password === "") {
+        errors.password = "Password is required";
+      }
 
-    if (!formData.agreement) {
-      errors.agreement = "Agreement is required";
-    }
+      if (!formData.agreement) {
+        errors.agreement = "Agreement is required";
+      }
 
-    if (Object.keys(errors).length > 0) {
-      setFormErrors(errors);
-      return;
-    }
-    toast.success("Welcome back 🥳");
-    navigate("/");
+      if (Object.keys(errors).length > 0) {
+        setFormErrors(errors);
+        return;
+      }
+      const response = await axios.post(
+        "http://localhost:8080/api/auth/login",
+        formData,
+        { headers }
+      );
 
-    console.log(formData);
+      if (response.status === 200) {
+        setSession(true);
+        setFormData({
+          email: "",
+          password: "",
+        });
+        toast.success("Welcome back 🥳");
+        navigate("/");
+      } else {
+        console.error("Login failed");
+      }
+    } catch (error) {
+      console.log("Użytkonwik nie istnieje lub błędne dane");
+    }
   };
 
   return (

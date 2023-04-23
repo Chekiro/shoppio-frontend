@@ -1,6 +1,6 @@
 import React from "react";
 import { FaBars } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import GameCat from "../assets/gam_cat.svg";
 import BedCat from "../assets/bed_cat.svg";
 import ChairCat from "../assets/chair_cat.svg";
@@ -8,7 +8,13 @@ import SofaCat from "../assets/sofa_cat.svg";
 import MobileCat from "../assets/mobile_cat.svg";
 import WatchCat from "../assets/watch_cat.svg";
 
-const Navbar = () => {
+const Navbar = ({ session, setSession }) => {
+  const navigate = useNavigate();
+  const logOut = () => {
+    console.log("hello");
+    setSession(false);
+    navigate("/");
+  };
   return (
     <nav className="bg-gray-800 hidden lg:block">
       <div className="container mx-auto px-auto">
@@ -73,18 +79,30 @@ const Navbar = () => {
               </Link>
             </div>
             <div className="flex items-center space-x-6 text-base capitalize mr-4">
-              <Link
-                to={"/login"}
-                className="ml-auto justify-self-end text-gray-200 hover:hover:text-sky-400 transition"
-              >
-                Login
-              </Link>
-              <Link
-                to={"/register"}
-                className="ml-auto justify-self-end text-gray-200 hover:hover:text-sky-400 transition"
-              >
-                Register
-              </Link>
+              {session ? (
+                <Link
+                  className="ml-auto justify-self-end text-gray-200 hover:hover:text-sky-400 transition"
+                  to={"/"}
+                  onClick={logOut}
+                >
+                  Wyloguj
+                </Link>
+              ) : (
+                <>
+                  <Link
+                    to={"/register"}
+                    className="ml-auto justify-self-end text-gray-200 hover:hover:text-sky-400 transition"
+                  >
+                    Register
+                  </Link>
+                  <Link
+                    to={"/login"}
+                    className="ml-auto justify-self-end text-gray-200 hover:hover:text-sky-400 transition"
+                  >
+                    Login
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>

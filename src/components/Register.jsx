@@ -39,6 +39,39 @@ const Register = () => {
     };
 
     try {
+      const errors = {};
+
+      if (formData.username.trim() === "") {
+        errors.username = "Username is required";
+      }
+
+      if (formData.email.trim() === "") {
+        errors.email = "Email is required";
+      } else {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.email)) {
+          errors.email = "Email is invalid";
+        }
+      }
+
+      if (formData.password === "") {
+        errors.password = "Password is required";
+      }
+
+      if (formData.confirmPassword === "") {
+        errors.confirmPassword = "Confirm password is required";
+      } else if (formData.password !== formData.confirmPassword) {
+        errors.confirmPassword = "Passwords do not match";
+      }
+
+      if (!formData.agreement) {
+        errors.agreement = "Agreement is required";
+      }
+
+      if (Object.keys(errors).length > 0) {
+        setFormErrors(errors);
+        return;
+      }
       const response = await axios.post(
         "http://localhost:8080/api/auth/register",
         formData,
@@ -46,6 +79,10 @@ const Register = () => {
       );
 
       if (response.status === 200) {
+        toast.success("You are registered !! 😃");
+        navigate("/login");
+
+        console.log(formData);
         setFormData({
           name: "",
           email: "",
@@ -57,44 +94,6 @@ const Register = () => {
     } catch (error) {
       console.error(error);
     }
-
-    const errors = {};
-
-    if (formData.username.trim() === "") {
-      errors.username = "Username is required";
-    }
-
-    if (formData.email.trim() === "") {
-      errors.email = "Email is required";
-    } else {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(formData.email)) {
-        errors.email = "Email is invalid";
-      }
-    }
-
-    if (formData.password === "") {
-      errors.password = "Password is required";
-    }
-
-    if (formData.confirmPassword === "") {
-      errors.confirmPassword = "Confirm password is required";
-    } else if (formData.password !== formData.confirmPassword) {
-      errors.confirmPassword = "Passwords do not match";
-    }
-
-    if (!formData.agreement) {
-      errors.agreement = "Agreement is required";
-    }
-
-    if (Object.keys(errors).length > 0) {
-      setFormErrors(errors);
-      return;
-    }
-    toast.success("You are registered !! 😃");
-    navigate("/login");
-
-    console.log(formData);
   };
 
   return (
