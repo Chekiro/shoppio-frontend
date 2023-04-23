@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -30,8 +31,32 @@ const Register = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const headers = {
+      "Content-Type": "application/json",
+    };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/auth/register",
+        formData,
+        { headers }
+      );
+
+      if (response.status === 200) {
+        setFormData({
+          name: "",
+          email: "",
+          password: "",
+        });
+      } else {
+        console.log("Register failed");
+      }
+    } catch (error) {
+      console.error(error);
+    }
 
     const errors = {};
 
