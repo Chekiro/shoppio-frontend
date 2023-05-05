@@ -9,36 +9,55 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Navbar from "./components/Navbar";
 import Cart from "./components/Cart";
-import { useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import axios from "axios";
+
+export const DataContext = createContext();
 
 function App() {
   const [session, setSession] = useState(false);
-  console.log(session);
+
+  const [data, setData] = useState([]);
+
+  const getData = () => {
+    axios
+      .get("http://localhost:8080/api/items")
+      .then((data) => setData(data.data))
+      .catch((error) => console.log(error));
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+  console.log(data);
+
   return (
-    <div className="App">
-      <Header />
-      <Navbar session={session} setSession={setSession} />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/login" element={<Login setSession={setSession} />} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
-      <Footer />
-      <Copyright />
-      <ToastContainer
-        position="bottom-left"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
-    </div>
+    <DataContext.Provider value={data}>
+      <div className="App">
+        <Header />
+        <Navbar session={session} setSession={setSession} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/login" element={<Login setSession={setSession} />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+        <Footer />
+        <Copyright />
+        <ToastContainer
+          position="bottom-left"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
+      </div>
+    </DataContext.Provider>
   );
 }
 

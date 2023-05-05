@@ -85,7 +85,7 @@ const Navbar = ({ session, setSession }) => {
                   to={"/"}
                   onClick={logOut}
                 >
-                  Wyloguj
+                  Log Out
                 </Link>
               ) : (
                 <>

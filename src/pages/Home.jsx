@@ -4,7 +4,7 @@ import Features from "../components/Features";
 import Category from "../components/Category";
 import BestDeals from "../components/BestDeals";
 import AdSection from "../components/AdSection";
-import PopularProducts from "../components/PopularProducts";
+import NewProducts from "../components/NewProducts";
 
 const Home = () => {
   return (
@@ -14,7 +14,7 @@ const Home = () => {
       <Category />
       <BestDeals />
       <AdSection />
-      <PopularProducts />
+      <NewProducts />
     </div>
   );
 };
