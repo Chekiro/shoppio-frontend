@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { DataContext } from "../App";
 import Product from "./Product";
+import data from "../data/data";
 
 const NewProducts = () => {
-  const data = useContext(DataContext);
-  const populatData = data.slice(0, 8);
+  const hardData = data.slice(-8);
+  
 
   return (
     <div className="container mx-auto px-auto pb-16">
@@ -12,7 +13,7 @@ const NewProducts = () => {
         News Products
       </h2>
       <div className="grid lg:grid-cols-4 sm:grid-cols-2 gap-6">
-        {populatData.map((item) => (
+        {hardData.map((item) => (
           <Product key={item.id} data={item} />
         ))}
       </div>

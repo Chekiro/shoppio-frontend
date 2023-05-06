@@ -1,4 +1,4 @@
-[
+export default[
   {
     id: 1,
     title: "Boat Rockerz 550",
@@ -318,7 +318,7 @@
     title: "Bed Skyline",
     price: 1799.0,
     discount: 1499.0,
-    rating: 2,
+    rating: 970,
     amount: 60,
     image:
       "https://images.unsplash.com/photo-1592229505678-cf99a9908e03?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
@@ -345,7 +345,7 @@
   },
   {
     id: 28,
-    title: "BENYAR Classic Fashion Elegant Chronograph",
+    title: "BENYAR Watch",
     price: 899.0,
     discount: 399.0,
     rating: 189,
