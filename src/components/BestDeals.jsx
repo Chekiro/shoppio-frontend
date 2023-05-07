@@ -1,25 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
+import { DataContext } from "../App";
 import Product from "./Product";
-import data from "../data/data";
-
-
 
 const BestDeals = () => {
+  const data = useContext(DataContext);
 
-
-  function topFourObjectsWithHighestRating(objectsArray) {
-    // Sortuj tablicę obiektów po polu rating, od największego do najmniejszego.
+  function HighestRating(objectsArray) {
     const sortedArray = objectsArray.sort((a, b) => b.rating - a.rating);
-    
-    // Twórz nową tablicę i przypisz do niej pierwsze cztery obiekty z posortowanej tablicy.
     const topFourObjects = sortedArray.slice(0, 4);
-    
-    // Zwróć nową tablicę z czterema obiektami o największym polu rating.
     return topFourObjects;
   }
-
-  const highestRatio = topFourObjectsWithHighestRating(data)
-  console.log(highestRatio);
+  const highestRatio = HighestRating(data);
 
   return (
     <div className="container mx-auto px-auto pb-16">
@@ -27,10 +18,9 @@ const BestDeals = () => {
         Beast Deals
       </h2>
       <div className="grid lg:grid-cols-4 sm:grid-cols-2 gap-6">
-      {highestRatio.map((item)=>(
+        {highestRatio.map((item) => (
           <Product key={item.id} data={item} />
         ))}
-        
       </div>
     </div>
   );

@@ -1,11 +1,16 @@
 import React, { useContext } from "react";
 import { DataContext } from "../App";
 import Product from "./Product";
-import data from "../data/data";
 
 const NewProducts = () => {
-  const hardData = data.slice(-8);
-  
+  const data = useContext(DataContext);
+
+  function LatestProducts(objectsArray) {
+    const sortedArray = objectsArray.sort((a, b) => b.id - a.id);
+    const LastEightProducts = sortedArray.slice(0, 8);
+    return LastEightProducts;
+  }
+  const newProducts = LatestProducts(data);
 
   return (
     <div className="container mx-auto px-auto pb-16">
@@ -13,7 +18,7 @@ const NewProducts = () => {
         News Products
       </h2>
       <div className="grid lg:grid-cols-4 sm:grid-cols-2 gap-6">
-        {hardData.map((item) => (
+        {newProducts.map((item) => (
           <Product key={item.id} data={item} />
         ))}
       </div>
