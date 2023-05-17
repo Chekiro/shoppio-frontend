@@ -11,7 +11,6 @@ import WatchCat from "../assets/watch_cat.svg";
 const Navbar = ({ session, setSession }) => {
   const navigate = useNavigate();
   const logOut = () => {
-    console.log("hello");
     setSession(false);
     navigate("/");
   };
@@ -69,13 +68,13 @@ const Navbar = ({ session, setSession }) => {
                 to={"/"}
                 className="text-gray-200 hover:text-sky-400 transition"
               >
-                About Us
+                Best Deals
               </Link>
               <Link
                 to={"/"}
                 className="text-gray-200 hover:text-sky-400 transition"
               >
-                Best Deals
+                New Added
               </Link>
             </div>
             <div className="flex items-center space-x-6 text-base capitalize mr-4">

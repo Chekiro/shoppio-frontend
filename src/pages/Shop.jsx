@@ -23,6 +23,9 @@ const Shop = () => {
   if (sorting === "priceLow") {
     sortedData.sort((a, b) => a.discount - b.discount);
   }
+  if (sorting === "mostRating") {
+    sortedData.sort((a, b) => b.rating - a.rating);
+  }
 
   return (
     <>
@@ -43,6 +46,7 @@ const Shop = () => {
               <option value="priceLow">Price low-high</option>
               <option value="priceHigh">Price high-low</option>
               <option value="latestProduct">Latest product</option>
+              <option value="mostRating">Most Rating</option>
             </select>
           </div>
           <div className="grid lg:grid-cols-2 xl:grid-cols-3 sm:grid-cols-2 gap-6">
