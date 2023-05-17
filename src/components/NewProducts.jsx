@@ -4,13 +4,15 @@ import Product from "./Product";
 
 const NewProducts = () => {
   const data = useContext(DataContext);
+  const newData = [...data];
 
   function LatestProducts(objectsArray) {
     const sortedArray = objectsArray.sort((a, b) => b.id - a.id);
     const LastEightProducts = sortedArray.slice(0, 8);
     return LastEightProducts;
   }
-  const newProducts = LatestProducts(data);
+
+  const newProducts = LatestProducts(newData);
 
   return (
     <div className="container mx-auto px-auto pb-16">

@@ -60,7 +60,7 @@ const Navbar = ({ session, setSession }) => {
                 Home
               </Link>
               <Link
-                to={"/"}
+                to={"/shop"}
                 className="text-gray-200 hover:text-sky-400 transition"
               >
                 Shop

@@ -4,13 +4,14 @@ import Product from "./Product";
 
 const BestDeals = () => {
   const data = useContext(DataContext);
+  const newData = [...data];
 
   function HighestRating(objectsArray) {
     const sortedArray = objectsArray.sort((a, b) => b.rating - a.rating);
     const topFourObjects = sortedArray.slice(0, 4);
     return topFourObjects;
   }
-  const highestRatio = HighestRating(data);
+  const highestRatio = HighestRating(newData);
 
   return (
     <div className="container mx-auto px-auto pb-16">

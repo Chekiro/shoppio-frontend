@@ -9,6 +9,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Navbar from "./components/Navbar";
 import Cart from "./components/Cart";
+import Shop from "./pages/Shop";
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
@@ -29,7 +30,6 @@ function App() {
   useEffect(() => {
     getData();
   }, []);
-  console.log(data);
 
   return (
     <DataContext.Provider value={data}>
@@ -41,6 +41,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login setSession={setSession} />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/shop" element={<Shop />} />
         </Routes>
         <Footer />
         <Copyright />

@@ -8,7 +8,7 @@ import Breadcrum from "./Breadcrum";
 const Cart = () => {
   return (
     <>
-      <Breadcrum />
+      <Breadcrum name="Shopping Cart" />
       <div className="container mx-auto px-auto lg:grid grid-cols-12 gap-6 items-start pb-16 pt-4">
         <div className="xl:col-span-9 lg:col-span-8">
           <div className="bg-gray-200 py-2 pl-12 pr-20 xl:pr-28 mb-4 hidden md:flex">
