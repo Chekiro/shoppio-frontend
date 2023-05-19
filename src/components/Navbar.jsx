@@ -1,12 +1,14 @@
 import React from "react";
 import { FaBars } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import GameCat from "../assets/gam_cat.svg";
 import BedCat from "../assets/bed_cat.svg";
 import ChairCat from "../assets/chair_cat.svg";
 import SofaCat from "../assets/sofa_cat.svg";
 import MobileCat from "../assets/mobile_cat.svg";
 import WatchCat from "../assets/watch_cat.svg";
+import { Link } from "react-router-dom";
+import { Link as Link2, animateScroll as scroll } from "react-scroll";
 
 const Navbar = ({ session, setSession }) => {
   const navigate = useNavigate();
@@ -64,18 +66,28 @@ const Navbar = ({ session, setSession }) => {
               >
                 Shop
               </Link>
-              <Link
-                to={"/"}
-                className="text-gray-200 hover:text-sky-400 transition"
+              <Link2
+                to="best-deals"
+                activeClass="active"
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={500}
+                className="text-gray-200 cursor-pointer hover:text-sky-400 transition"
               >
                 Best Deals
-              </Link>
-              <Link
-                to={"/"}
-                className="text-gray-200 hover:text-sky-400 transition"
+              </Link2>
+              <Link2
+                to="new-products"
+                activeClass="active"
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={500}
+                className="text-gray-200 cursor-pointer hover:text-sky-400 transition"
               >
                 New Added
-              </Link>
+              </Link2>
             </div>
             <div className="flex items-center space-x-6 text-base capitalize mr-4">
               {session ? (

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:only": "vite dev --host" ,
+    "dev:only": "vite dev --host",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -17,6 +17,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
     "react-router-dom": "^6.9.0",
+    "react-scroll": "^1.8.9",
     "react-toastify": "^9.1.2",
     "sort-by": "^1.2.0"
   },

@@ -5,6 +5,7 @@ import Category from "../components/Category";
 import BestDeals from "../components/BestDeals";
 import AdSection from "../components/AdSection";
 import NewProducts from "../components/NewProducts";
+import { Element } from "react-scroll";
 
 const Home = () => {
   return (
@@ -12,9 +13,13 @@ const Home = () => {
       <Banner />
       <Features />
       <Category />
-      <BestDeals />
+      <Element name="best-deals">
+        <BestDeals />
+      </Element>
       <AdSection />
-      <NewProducts />
+      <Element name="new-products">
+        <NewProducts />
+      </Element>
     </div>
   );
 };
