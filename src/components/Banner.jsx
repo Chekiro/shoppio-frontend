@@ -20,6 +20,7 @@ const Banner = () => {
         </p>
         <div className="mt-12">
           <Link
+            to={"/shop"}
             className="bg-sky-400 border border-sky-400 text-white px-8 py-3 font-medium rounded-md uppercase hover:bg-transparent
                hover:text-black"
           >

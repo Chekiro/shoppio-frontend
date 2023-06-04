@@ -8,7 +8,7 @@ import {
 } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 
-const Header = () => {
+const Header = ({ amountItems }) => {
   return (
     <header className="py-4 shadow-sm lg:bg-white">
       <div className="container mx-auto px-4   flex items-center justify-between">
@@ -52,7 +52,7 @@ const Header = () => {
               className="lg:block text-center text-gray-700 hover:text-sky-400 transition hidden relative"
             >
               <span className="absolute -right-2 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-sky-400 text-white text-xs">
-                5
+                {amountItems}
               </span>
               <div className="text-2xl">
                 <AiOutlineShoppingCart size={30} className="-ml-1" />

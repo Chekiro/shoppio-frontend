@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaSearch, FaHeart, FaStar } from "react-icons/fa";
+import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { DataContext } from "../App";
 
 const Product = ({ data }) => {
+  const { addToCart } = useContext(DataContext);
+  const handleAddToCart = () => {
+    addToCart(data);
+    toast.success("Product added to cart 🥳");
+  };
   const { title, price, discount, rating, image } = data;
   return (
     <div className="group rounded bg-white shadow overflow-hidden">
@@ -56,7 +63,10 @@ const Product = ({ data }) => {
           </div>
         </div>
       </div>
-      <Link className="block w-full py-1 text-center text-white bg-sky-400 border-2 border-sky-400 rounded-b hover:bg-transparent hover:text-black transition">
+      <Link
+        onClick={handleAddToCart}
+        className="block w-full py-1 text-center text-white bg-sky-400 border-2 border-sky-400 rounded-b hover:bg-transparent hover:text-black transition"
+      >
         Add to Cart
       </Link>
     </div>

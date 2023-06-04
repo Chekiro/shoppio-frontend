@@ -6,7 +6,7 @@ import { DataContext } from "../App";
 import { FaTimes } from "react-icons/fa";
 
 const Shop = () => {
-  const data = useContext(DataContext);
+  const { data } = useContext(DataContext);
   const sortedData = [...data];
   const categoryData = [...data];
   const [sorting, setSorting] = useState("default");
@@ -113,14 +113,14 @@ const Shop = () => {
           </div>
         </div>
         <div className="col-span-3">
-          <div className="mb-4 flex items-center">
-            <button className="bg-primary border border-primary text-white px-10 py-3 font-medium rounded uppercase hover:bg-transparent hover:text-sky-400 transition lg:hidden text-sm mr-3 focus:outline-none">
+          <div className="ml-5 mb-4 flex items-center justify-between">
+            <button className="bg-sky-400 border border-primary text-white px-10 py-3 font-medium rounded uppercase hover:bg-transparent hover:text-sky-400 transition lg:hidden text-sm mr-3 focus:outline-none">
               Filter
             </button>
             <select
               value={sorting}
               onChange={handleSortingChange}
-              className="w-44 text-sm text-gray-600 px-4 py-3 border-gray-300 shadow-sm rounded focus:ring-primary focus:border-primary"
+              className="w-44 text-sm text-gray-600 px-4 py-3 border-gray-300 shadow-sm rounded focus:ring-sky-400 focus:border-sky-400"
             >
               <option value="default">Default sorting</option>
               <option value="priceLow">Price low-high</option>

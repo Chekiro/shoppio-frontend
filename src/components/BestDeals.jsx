@@ -3,7 +3,7 @@ import { DataContext } from "../App";
 import Product from "./Product";
 
 const BestDeals = () => {
-  const data = useContext(DataContext);
+  const { data } = useContext(DataContext);
   const newData = [...data];
 
   function HighestRating(objectsArray) {
